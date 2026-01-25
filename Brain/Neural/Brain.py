@@ -555,10 +555,7 @@ class BrainStructure:
     # ===========================================
     # Summary of the brain structure.
     # ===========================================
-    def summary(self) -> None:
-        # ----------------------------
-        # Basic counts
-        # ----------------------------
+    def get_structure_data(self) -> dict:
         nodes = self.nodes
         conns = self.connections
 
@@ -566,81 +563,48 @@ class BrainStructure:
         total_connections = sum(1 for c in conns.values() if c["enabled"])
         total_weights = total_connections
         total_biases = len(self.biases)
-        total_params = total_weights + total_biases
 
-        # ----------------------------
-        # Layer & role counts
-        # ----------------------------
-        layer_set: set[int] = set()
         role_count = {"input": 0, "hidden": 0, "output": 0}
+        layers = set()
 
         for n in nodes.values():
-            layer_set.add(n["layer"])
             role_count[n["role"]] += 1
+            layers.add(n["layer"])
 
-        total_layers = len(layer_set)
-
-        # ----------------------------
-        # Usage stats
-        # ----------------------------
         total_usage = sum(n["usage"] for n in nodes.values())
-        avg_usage = total_usage / total_nodes if total_nodes > 0 else 0.0
 
-        # ----------------------------
-        # Header
-        # ----------------------------
-        print("\n==================== Brain Summary ====================")
-        print(f"Model type          : {getattr(self, 'model_type', 'Unknown')}")
-        print(f"Layers              : {total_layers}")
-        print(f"Nodes               : {total_nodes}")
-        print(f"  ├─ Input           : {role_count['input']}")
-        print(f"  ├─ Hidden          : {role_count['hidden']}")
-        print(f"  └─ Output          : {role_count['output']}")
-        print(f"Active connections  : {total_connections}")
-        print(f"Parameters          : {total_params}")
-        print(f"  ├─ Weights         : {total_weights}")
-        print(f"  └─ Biases          : {total_biases}")
-        print(f"Usage (total)       : {total_usage:.2f}")
-        print(f"Usage (avg/node)    : {avg_usage:.2f}")
-        print("------------------------------------------------------")
-        print("Layer Node                  Role       Head         Usage %    Params")
-        print("----------------------------------------------------------------------")
-
-        # ----------------------------
-        # Per-node table
-        # ----------------------------
+        node_rows = []
         for nid, n in sorted(nodes.items(), key=lambda x: (x[1]["layer"], x[0])):
-            layer = n["layer"]
-            role = n["role"]
-            head = n.get("head", None)
-            usage_pct = (n["usage"] / total_usage * 100.0) if total_usage > 0 else 0.0
-
-            # params per node = incoming weights + bias
             param_count = 1  # bias
             for c in conns.values():
                 if c["enabled"] and c["destination"] == nid:
                     param_count += 1
 
-            print(
-                f"{layer:<5} "
-                f"{nid:<22} "
-                f"{role:<10} "
-                f"{str(head):<12} "
-                f"{usage_pct:>7.2f}% "
-                f"{param_count:>9}"
-            )
+            node_rows.append({
+                "layer": n["layer"],
+                "id": nid,
+                "role": n["role"],
+                "head": n.get("head"),
+                "usage": n["usage"],
+                "usage_pct": (n["usage"] / total_usage * 100) if total_usage else 0.0,
+                "params": param_count
+            })
 
-        # ----------------------------
-        # Footer totals
-        # ----------------------------
-        print("======================================================")
-        print("════════════════════════════════════════════════════════════")
-        print(f"Total Params              : {total_params}")
-        print(f"Total Trainable Params    : {total_params}")
-        print(f"Total Non-trainable Params: 0")
-        print("════════════════════════════════════════════════════════════\n")
-
-    
+        return {
+            "model_type": getattr(self, "model_type", "Unknown"),
+            "layers": len(layers),
+            "nodes": total_nodes,
+            "roles": role_count,
+            "connections": total_connections,
+            "parameters": {
+                "total": total_weights + total_biases,
+                "weights": total_weights,
+                "biases": total_biases
+            },
+            "usage_avg": total_usage / total_nodes if total_nodes else 0.0,
+            "node_rows": node_rows
+        }
+        
     def visualize(self) -> None:
         print("[visualize] Not implemented (graph visualization hook)")
 
