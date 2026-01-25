@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "scope": "memory_management",
+    "authority": "system",
+    "applies_to": [
+      "memory_consolidation",
+      "memory_retrieval",
+      "memory_decay"
+    ]
+  },
+  "memory_consolidation": {
+    "enable_consolidation": true,
+    "consolidation_interval_minutes": 30,
+    "consolidation_threshold": 0.5,
+    "strategies": [
+      "sleep_based",
+      "active_consolidation",
+      "experience_replay"
+    ]
+  },
+  "memory_retrieval": {
+    "retrieval_strategy": "associative",
+    "default_search_depth": 5,
+    "max_search_results": 20,
+    "use_emotional_context": true,
+    "use_topic_context": true
+  },
+  "memory_decay": {
+    "enable_forgetting": true,
+    "base_decay_rate": 0.05,
+    "emotional_protection": true,
+    "importance_based_retention": true,
+    "min_retention_duration_hours": 1
+  },
+  "memory_organization": {
+    "organize_by_topic": true,
+    "organize_by_emotion": true,
+    "organize_by_time": true,
+    "use_hierarchical_structure": true
+  },
+  "emotional_memory": {
+    "emotional_strengthening": true,
+    "emotion_strength_multiplier": 2.0,
+    "emotional_memories_resist_decay": true,
+    "emotional_context_in_retrieval": true
+  },
+  "memory_limits": {
+    "short_term_max_items": 50,
+    "middle_term_max_items": 500,
+    "long_term_max_items": 10000,
+    "overflow_strategy": "consolidate_and_compress"
+  },
+  "integrity": {
+    "check_memory_consistency": true,
+    "detect_conflicts": true,
+    "resolve_conflicts_by": "recency",
+    "backup_important_memories": true
+  },
+  "monitoring": {
+    "track_memory_usage": true,
+    "log_memory_changes": false,
+    "alert_on_anomaly": true
+  }
+}

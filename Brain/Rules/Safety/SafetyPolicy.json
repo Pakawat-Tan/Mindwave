@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "scope": "safety_governance",
+    "authority": "advisor_required",
+    "applies_to": [
+      "motion_control",
+      "output_generation",
+      "external_action"
+    ]
+  },
+  "safety_levels": {
+    "default": "normal",
+    "levels": [
+      "permissive",
+      "normal",
+      "cautious",
+      "strict",
+      "lockdown"
+    ]
+  },
+  "motion_safety": {
+    "enabled": true,
+    "max_movement_velocity": 0.5,
+    "max_force_newtons": 100,
+    "emergency_stop_required": true,
+    "require_confirmation_for": [
+      "high_velocity",
+      "high_force",
+      "unknown_environment"
+    ]
+  },
+  "output_safety": {
+    "filter_harmful_content": true,
+    "max_response_risk_level": 0.3,
+    "require_review_for_risk_level": 0.7,
+    "block_on_risk_level": 0.9
+  },
+  "decision_safety": {
+    "require_confidence_minimum": 0.6,
+    "require_review_for_uncertainty": 0.3,
+    "require_advisor_approval_for_risk": true
+  },
+  "monitoring": {
+    "track_all_outputs": true,
+    "log_safety_events": true,
+    "alert_on_safety_violation": true,
+    "continuous_safety_check": true
+  },
+  "override_protocols": {
+    "allow_emergency_override": true,
+    "emergency_stop_overrides_all": true,
+    "advisor_can_override": true,
+    "log_all_overrides": true
+  },
+  "compliance": {
+    "check_regulatory_rules": true,
+    "enforce_ethical_constraints": true,
+    "prevent_harm": true,
+    "respect_user_privacy": true
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "scope": "learning_governance",
+    "authority": "advisor_for_major_changes",
+    "applies_to": [
+      "gradient_learning",
+      "self_learning",
+      "advisor_learning",
+      "replay_learning"
+    ]
+  },
+  "learning_modes": {
+    "default_mode": "hybrid",
+    "available_modes": [
+      "gradient_based",
+      "self_directed",
+      "advisor_directed",
+      "replay_based",
+      "evolutionary",
+      "hybrid"
+    ]
+  },
+  "gradient_learning": {
+    "enabled": true,
+    "learning_rate": 0.01,
+    "momentum": 0.9,
+    "weight_decay": 0.0001,
+    "gradient_clipping": 1.0,
+    "adaptive_learning_rate": true
+  },
+  "self_learning": {
+    "enabled": true,
+    "introspection_frequency": 100,
+    "min_confidence_to_learn": 0.5,
+    "self_correction_enabled": true
+  },
+  "advisor_learning": {
+    "enabled": true,
+    "respects_external_learning_flag": true,
+    "check_allow_external_learning_from": "SystemRule.capability_flags.allow_external_learning",
+    "require_advisor_approval": false,
+    "advisor_feedback_weight": 0.5,
+    "build_advisor_trust_model": true,
+    "note": "If allow_external_learning is false, external advisor input will be blocked"
+  },
+  "replay_learning": {
+    "enabled": true,
+    "buffer_size": 10000,
+    "batch_size": 32,
+    "sampling_strategy": "prioritized",
+    "replay_frequency": "every_100_steps"
+  },
+  "evolutionary_learning": {
+    "enabled": false,
+    "population_size": 10,
+    "mutation_rate": 0.1,
+    "generation_interval": 1000
+  },
+  "learning_constraints": {
+    "max_weight_change_per_step": 0.1,
+    "prevent_catastrophic_forgetting": true,
+    "maintain_old_knowledge_weight": 0.9,
+    "learning_patience_epochs": 10
+  },
+  "convergence": {
+    "early_stopping_enabled": true,
+    "patience_threshold": 5,
+    "min_improvement_threshold": 0.001,
+    "max_training_iterations": 10000
+  },
+  "monitoring": {
+    "track_learning_progress": true,
+    "log_weight_changes": false,
+    "alert_on_divergence": true,
+    "performance_sample_rate": 0.1
+  },
+  "safety": {
+    "require_review_for_structural_change": true,
+    "require_advisor_for_major_learning": false,
+    "validate_learned_behavior": true
+  }
+}

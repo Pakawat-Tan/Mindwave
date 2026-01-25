@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "scope": "system_governance",
+    "authority": "advisor_required",
+    "applies_to": [
+      "brain",
+      "brain_controller",
+      "core",
+      "rule_engine"
+    ]
+  },
+  "system_core": {
+    "name": "Mindwave Brain",
+    "language": "th",
+    "mode": "development",
+    "personality": "friendly"
+  },
+  "immutability": {
+    "self_modify": false,
+    "modifiable_by": [
+      "advisor"
+    ],
+    "reason": "System-level governance must be human-approved",
+    "admin_role_note": "Administrator may deploy changes but cannot alter system rules without advisor approval"
+  },
+  "capability_flags": {
+    "allow_learning": true,
+    "allow_adaptation": true,
+    "allow_memory_write": true,
+    "allow_external_learning": false
+  },
+  "governance": {
+    "require_review_for_new_rules": true,
+    "require_advisor_for_acquisition": true,
+    "allow_self_proposed_change": true
+  },
+  "safety_override": {
+    "force_safe_mode": false,
+    "emergency_lockdown": false,
+    "max_response_risk_level": 0.3
+  },
+  "integration": {
+    "brain_can_request_rule_change": true,
+    "controller_can_override_brain": true,
+    "rule_engine_is_authoritative": true
+  },
+  "experimental": {
+    "enable_self_referential_learning": false,
+    "enable_meta_learning": false
+  }
+}
