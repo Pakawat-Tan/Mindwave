@@ -1,3 +1,50 @@
+# 🧠 Mindwave SI
+
+**Mindwave SI** คือโครงการพัฒนา **Synthetic Intelligence (SI)**  
+ที่ออกแบบเป็น “สมองเทียมเชิงโครงสร้าง” ไม่ใช่แค่โมเดล ML
+
+ระบบนี้สามารถ:
+- คิด (Reason)
+- จำ (Memory)
+- เรียนรู้ (Learning)
+- ประเมินตนเอง (Introspection)
+- ตัดสินใจและกระทำ (Decision & Motion)
+
+โดยมี **BrainController** เป็นศูนย์ควบคุม Runtime ทั้งหมด
+
+## 🎯 Design Philosophy
+
+- แยก “ความคิด” ออกจาก “การควบคุม”
+- Brain ไม่รู้จักโลกภายนอกโดยตรง
+- ทุกการกระทำต้องผ่าน Rule และ Safety
+- ระบบต้องสามารถเติบโตจากประสบการณ์
+
+> มนุษย์ออกแบบกรอบ  
+> สมองเรียนรู้ภายในกรอบนั้น
+
+## 🔄 Runtime Flow (Concept)
+```text
+Input (Vision / Sound / Text)
+        ↓
+    InputAdapter
+        ↓
+   WorkingMemory
+        ↓
+        Brain
+        ↓
+ Review / Confidence
+        ↓
+ Rules / Safety / Policy
+        ↓
+     Decision
+        ↓
+ Motion / Output
+        ↓
+ Feedback → Memory → Learning
+```
+
+## 📁 Project Structure
+```text
 Mindwave/
 ├─ Brain/                         # แกนสมอง (Cognition + Learning + Control)
 │  ├─ Meta/                       # การรับรู้ตัวตน (Self-awareness)
@@ -79,3 +126,50 @@ Mindwave/
 ├─ MainCore.py                    # entry point ของระบบ
 ├─ README.md                      # ภาพรวมโครงการ
 └─ __init__.py
+```
+## 🧠 BrainController
+
+BrainController คือหัวใจของระบบ  
+ทำหน้าที่เป็น **Runtime Orchestrator**
+
+### Responsibilities
+- ควบคุม lifecycle ของ SI
+- ประสาน Brain, Memory, Rules, IO
+- ตรวจสอบ Safety ก่อนทุก action
+- ตัดสินใจว่า “คิด / เรียนรู้ / กระทำ” เมื่อใด
+
+### Conceptual API
+- initialize()
+- tick()
+- receive_input()
+- think()
+- evaluate_rules()
+- decide()
+- act()
+- learn()
+- monitor()
+- shutdown()
+
+## 👁️ Vision / 🔊 Sound / 🦾 Motion
+
+### Vision Pipeline
+Camera → Preprocess → Encode → VisionBuffer → WorkingMemory
+
+### Sound Pipeline
+Microphone → Preprocess → Encode → SoundBuffer → WorkingMemory
+
+### Motion Pipeline
+Decision → MotionIntent → Planner → MotorController → Feedback
+
+## 📜 Rule & Safety System
+
+- Rule จัดเก็บในรูปแบบ JSON
+- Brain ไม่สามารถแก้ Rule ได้
+- ครอบคลุม:
+  - Safety
+  - Learning
+  - Memory
+  - Routing
+  - Runtime Policy
+
+ทุกการกระทำต้องผ่าน Rule Engine ก่อนเสมอ
