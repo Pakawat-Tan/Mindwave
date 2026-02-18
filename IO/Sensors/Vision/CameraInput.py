@@ -1,2 +1,0 @@
-class CameraInput:
-    pass
