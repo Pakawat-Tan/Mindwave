@@ -1,0 +1,24 @@
+{
+  "_comment": "Topic Module Rules",
+  "_authority": "standard",
+  "rules": [
+    {
+      "scope": "memory",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "topic_merge_unsafe",
+      "use_regex": false,
+      "priority": 70,
+      "description": "ห้าม merge topics ที่มี coherence ต่ำเกินไป"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "topic_delete_active",
+      "use_regex": false,
+      "priority": 75,
+      "description": "ห้ามลบ topic ที่กำลัง active อยู่"
+    }
+  ]
+}

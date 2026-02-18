@@ -1,0 +1,51 @@
+{
+  "_comment": "Adaptive Neural Evolution Rules — แก้ไขได้เฉพาะ Creator",
+  "_authority": "system",
+  "rules": [
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "uncontrolled_growth",
+      "use_regex": false,
+      "priority": 95,
+      "description": "ห้าม neuron growth ที่ไม่ผ่าน approval"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "self_modify_core",
+      "use_regex": false,
+      "priority": 95,
+      "description": "ห้าม modify core structure โดยตรง"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "(?i)gradient.{0,10}(explod|nan|inf)",
+      "use_regex": true,
+      "priority": 90,
+      "description": "หยุดเมื่อ gradient explode หรือ NaN"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "evolution_rollback_blocked",
+      "use_regex": false,
+      "priority": 90,
+      "description": "ห้ามบล็อก rollback mechanism ของ evolution"
+    },
+    {
+      "scope": "system",
+      "action": "allow",
+      "match_type": "pattern",
+      "pattern": "supervised_evolution",
+      "use_regex": false,
+      "priority": 80,
+      "description": "อนุญาต evolution ที่ผ่าน supervision"
+    }
+  ]
+}

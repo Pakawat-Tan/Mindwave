@@ -1,0 +1,33 @@
+{
+  "_comment": "Emotion Module Rules",
+  "_authority": "standard",
+  "rules": [
+    {
+      "scope": "output",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "emotion_amplify_harmful",
+      "use_regex": false,
+      "priority": 75,
+      "description": "ห้าม amplify อารมณ์เชิงลบเกินขอบเขตที่ปลอดภัย"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "emotion_state_locked",
+      "use_regex": false,
+      "priority": 70,
+      "description": "ห้าม lock emotion state ค้างไว้นาน"
+    },
+    {
+      "scope": "output",
+      "action": "allow",
+      "match_type": "pattern",
+      "pattern": "neutral_emotion_fallback",
+      "use_regex": false,
+      "priority": 40,
+      "description": "อนุญาต fallback ไป neutral เมื่อ inference ล้มเหลว"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "_comment": "Safety/Output Module Rules",
+  "_authority": "standard",
+  "rules": [
+    {
+      "scope": "output",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "(?i)(how to (make|build|create).{0,20}(bomb|weapon|poison|malware))",
+      "use_regex": true,
+      "priority": 95,
+      "description": "ห้าม output คำแนะนำสร้างอาวุธหรือสิ่งอันตราย"
+    },
+    {
+      "scope": "output",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "(?i)(self.harm|suicide.method|cut.yourself)",
+      "use_regex": true,
+      "priority": 95,
+      "description": "ห้าม output เนื้อหาที่ส่งเสริมการทำร้ายตนเอง"
+    },
+    {
+      "scope": "input",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "(?i)(bypass.{0,15}safety|disable.{0,15}filter|ignore.{0,15}safety)",
+      "use_regex": true,
+      "priority": 90,
+      "description": "ห้าม input ที่พยายาม bypass safety filter"
+    },
+    {
+      "scope": "output",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "unvalidated_code_exec",
+      "use_regex": false,
+      "priority": 85,
+      "description": "ห้าม output code ที่ไม่ผ่าน validation"
+    }
+  ]
+}

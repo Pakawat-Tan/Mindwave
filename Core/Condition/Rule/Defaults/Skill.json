@@ -1,0 +1,42 @@
+{
+  "_comment": "Skill Module Rules",
+  "_authority": "standard",
+  "rules": [
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "skill_override_rule",
+      "use_regex": false,
+      "priority": 95,
+      "description": "Skill ไม่สามารถ override Rule ได้เด็ดขาด"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "skill_uncontrolled_spawn",
+      "use_regex": false,
+      "priority": 85,
+      "description": "ห้าม Skill spawn sub-skill โดยไม่ผ่าน approval"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "skill_confidence_bypass_identity",
+      "use_regex": false,
+      "priority": 90,
+      "description": "Confidence ไม่สามารถข้าม Identity ได้"
+    },
+    {
+      "scope": "system",
+      "action": "allow",
+      "match_type": "pattern",
+      "pattern": "skill_registered_execute",
+      "use_regex": false,
+      "priority": 50,
+      "description": "อนุญาต Skill ที่ลงทะเบียนแล้ว execute ได้"
+    }
+  ]
+}

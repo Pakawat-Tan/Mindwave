@@ -1,0 +1,33 @@
+{
+  "_comment": "Brain/Neural Module Rules",
+  "_authority": "standard",
+  "rules": [
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "brain_halt_override",
+      "use_regex": false,
+      "priority": 90,
+      "description": "ห้าม override คำสั่ง halt ของ BrainController"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "concurrent_brain_init",
+      "use_regex": false,
+      "priority": 85,
+      "description": "ห้าม initialize BrainController ซ้อนกัน"
+    },
+    {
+      "scope": "input",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "(?i)force.{0,10}(reboot|reset|reinitialize).{0,10}brain",
+      "use_regex": true,
+      "priority": 80,
+      "description": "ห้าม force reboot Brain จาก input"
+    }
+  ]
+}

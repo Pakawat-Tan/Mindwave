@@ -1,0 +1,31 @@
+# ตัวอย่างข้อมูลสำหรับเทรน Mindwave
+
+<fact>Neural network คือโครงข่ายประสาทเทียมที่จำลองการทำงานของสมองมนุษย์</fact>
+
+<fact>Deep learning เป็น subset ของ machine learning ที่ใช้ neural network หลายชั้น</fact>
+
+<qa>
+Q: AI คืออะไร?
+A: AI หรือ Artificial Intelligence คือระบบคอมพิวเตอร์ที่สามารถเรียนรู้และแก้ปัญหาได้
+</qa>
+
+<qa>
+Q: Machine learning ต่างจาก AI อย่างไร?
+A: Machine learning เป็นส่วนหนึ่งของ AI ที่เน้นการเรียนรู้จากข้อมูลโดยไม่ต้องโปรแกรมกฎตรงๆ
+</qa>
+
+<context:math>
+สมการกำลังสอง ax²+bx+c=0 แก้ได้ด้วยสูตร x = (-b ± √(b²-4ac)) / 2a
+ค่า discriminant = b²-4ac ถ้า > 0 มี 2 คำตอบ, = 0 มี 1 คำตอบ, < 0 ไม่มีคำตอบจริง
+</context:math>
+
+<rule>Mindwave ตอบด้วยภาษาไทยเป็นหลักเว้นแต่ถูกถามเป็นภาษาอื่น</rule>
+
+<ignore>
+ส่วนนี้เป็น draft ยังไม่พร้อมใช้งาน
+จะอัปเดตภายหลัง
+</ignore>
+
+ข้อความนี้เป็น plain text ที่ไม่มี tag
+Mindwave จะเรียนรู้เป็น plain chunk ปกติ
+ระบบสามารถรับข้อมูลได้ทั้งแบบ tagged และไม่มี tag

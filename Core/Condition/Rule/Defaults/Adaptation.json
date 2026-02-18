@@ -1,0 +1,33 @@
+{
+  "_comment": "Adaptation Module Rules",
+  "_authority": "standard",
+  "rules": [
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "rapid_structural_change",
+      "use_regex": false,
+      "priority": 80,
+      "description": "ห้าม structural adaptation เร็วเกินกว่า rate limit"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "personality_drift_extreme",
+      "use_regex": false,
+      "priority": 85,
+      "description": "หยุดเมื่อ personality drift เกินขอบเขตที่ยอมรับได้"
+    },
+    {
+      "scope": "system",
+      "action": "allow",
+      "match_type": "pattern",
+      "pattern": "incremental_adaptation",
+      "use_regex": false,
+      "priority": 50,
+      "description": "อนุญาต incremental adaptation ที่ผ่าน approval"
+    }
+  ]
+}

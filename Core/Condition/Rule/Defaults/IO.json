@@ -1,0 +1,42 @@
+{
+  "_comment": "IO Module Rules",
+  "_authority": "standard",
+  "rules": [
+    {
+      "scope": "input",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "(?i)(file:/|\\.\\.[\\/])",
+      "use_regex": true,
+      "priority": 85,
+      "description": "ห้าม path traversal ใน input"
+    },
+    {
+      "scope": "output",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "raw_system_path_leak",
+      "use_regex": false,
+      "priority": 80,
+      "description": "ห้าม output system path ของระบบภายใน"
+    },
+    {
+      "scope": "input",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "(?i)(exec|eval|__import__|subprocess)",
+      "use_regex": true,
+      "priority": 90,
+      "description": "ห้าม code execution keywords ใน input"
+    },
+    {
+      "scope": "output",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "binary_data_unencoded",
+      "use_regex": false,
+      "priority": 75,
+      "description": "ห้าม output binary data โดยไม่ encode"
+    }
+  ]
+}

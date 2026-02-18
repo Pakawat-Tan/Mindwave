@@ -1,0 +1,42 @@
+{
+  "_comment": "Memory Module Rules — แก้ไขได้โดย Reviewer",
+  "_authority": "standard",
+  "rules": [
+    {
+      "scope": "memory",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "(?i)(password|secret_key|api_key|token|credential)",
+      "use_regex": true,
+      "priority": 80,
+      "description": "ห้ามเก็บ credentials ใน memory"
+    },
+    {
+      "scope": "memory",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "immortal_force_write",
+      "use_regex": false,
+      "priority": 85,
+      "description": "ห้าม force write ไป immortal tier โดยไม่มี reviewer"
+    },
+    {
+      "scope": "memory",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "bulk_delete_all",
+      "use_regex": false,
+      "priority": 85,
+      "description": "ห้าม bulk delete memory ทั้งหมด"
+    },
+    {
+      "scope": "memory",
+      "action": "allow",
+      "match_type": "pattern",
+      "pattern": "session_cleanup",
+      "use_regex": false,
+      "priority": 50,
+      "description": "อนุญาต cleanup memory ของ session ที่หมดอายุ"
+    }
+  ]
+}

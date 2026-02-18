@@ -1,0 +1,148 @@
+{
+  "_comment": "SYSTEM Rules — แก้ไขได้เฉพาะ Creator / Advisor เท่านั้น",
+  "_authority": "system",
+
+  "meta": {
+    "version": "1.0.0",
+    "scope": "system_governance",
+    "authority": "advisor_required",
+    "applies_to": ["brain", "brain_controller", "core", "rule_engine"]
+  },
+
+  "system_core": {
+    "name": "Mindwave Brain",
+    "language": "th",
+    "mode": "development",
+    "personality": "friendly"
+  },
+
+  "immutability": {
+    "self_modify": false,
+    "modifiable_by": ["advisor"],
+    "reason": "System-level governance must be human-approved",
+    "admin_role_note": "Administrator may deploy changes but cannot alter system rules without advisor approval"
+  },
+
+  "capability_flags": {
+    "allow_learning": true,
+    "allow_adaptation": true,
+    "allow_memory_write": true,
+    "allow_external_learning": false
+  },
+
+  "governance": {
+    "require_review_for_new_rules": true,
+    "require_advisor_for_acquisition": true,
+    "allow_self_proposed_change": true
+  },
+
+  "safety_override": {
+    "force_safe_mode": false,
+    "emergency_lockdown": false,
+    "max_response_risk_level": 0.3
+  },
+
+  "integration": {
+    "brain_can_request_rule_change": true,
+    "controller_can_override_brain": true,
+    "rule_engine_is_authoritative": true
+  },
+
+  "experimental": {
+    "enable_self_referential_learning": false,
+    "enable_meta_learning": false
+  },
+
+  "rules": [
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "identity_override",
+      "use_regex": false,
+      "priority": 100,
+      "description": "ห้ามเปลี่ยนแปลง Identity ของระบบ"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "governance_bypass",
+      "use_regex": false,
+      "priority": 100,
+      "description": "ห้ามข้าม Governance Hierarchy"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "rule_override",
+      "use_regex": false,
+      "priority": 100,
+      "description": "Skill ไม่สามารถ override Rule"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "self_modify_core",
+      "use_regex": false,
+      "priority": 100,
+      "description": "ห้าม self_modify เมื่อ immutability.self_modify = false"
+    },
+    {
+      "scope": "input",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "(?i)(jailbreak|prompt.?injection|ignore.{0,20}instruction)",
+      "use_regex": true,
+      "priority": 99,
+      "description": "ห้าม prompt injection ทุกรูปแบบ"
+    },
+    {
+      "scope": "output",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "(?i)(my (real|true|actual) (name|identity|self) is)",
+      "use_regex": false,
+      "priority": 99,
+      "description": "ห้ามเปิดเผย identity ที่แท้จริงใน output"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "external_learning_unauthorized",
+      "use_regex": false,
+      "priority": 95,
+      "description": "ห้าม external learning เมื่อ allow_external_learning = false"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "emergency_lockdown_bypass",
+      "use_regex": true,
+      "priority": 100,
+      "description": "ห้าม bypass emergency lockdown ไม่ว่ากรณีใด"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "advisor_approval_skip",
+      "use_regex": false,
+      "priority": 98,
+      "description": "ห้ามข้ามขั้นตอน advisor approval สำหรับการเปลี่ยน Rule"
+    },
+    {
+      "scope": "system",
+      "action": "allow",
+      "match_type": "pattern",
+      "pattern": "self_proposed_change",
+      "use_regex": true,
+      "priority": 60,
+      "description": "อนุญาตให้ Brain เสนอการเปลี่ยนแปลงได้ (ต้องรอ advisor approve)"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "_comment": "Routing Module Rules",
+  "_authority": "standard",
+  "rules": [
+    {
+      "scope": "input",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "route_to_external_unsafe",
+      "use_regex": false,
+      "priority": 80,
+      "description": "ห้าม route ข้อมูลไปยัง external endpoint ที่ไม่ได้รับอนุมัติ"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "routing_loop_detected",
+      "use_regex": false,
+      "priority": 85,
+      "description": "หยุดเมื่อตรวจพบ routing loop"
+    },
+    {
+      "scope": "input",
+      "action": "allow",
+      "match_type": "pattern",
+      "pattern": "internal_module_route",
+      "use_regex": false,
+      "priority": 50,
+      "description": "อนุญาต routing ระหว่าง internal modules"
+    }
+  ]
+}

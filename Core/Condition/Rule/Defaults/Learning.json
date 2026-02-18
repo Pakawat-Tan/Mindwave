@@ -1,0 +1,42 @@
+{
+  "_comment": "Learning Module Rules",
+  "_authority": "standard",
+  "rules": [
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "learning_rate_extreme",
+      "use_regex": true,
+      "priority": 80,
+      "description": "ห้าม learning rate ที่ทำให้ระบบ unstable"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "overwrite_pretrained_core",
+      "use_regex": false,
+      "priority": 90,
+      "description": "ห้าม overwrite pretrained weights หลัก"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "adversarial_train_input",
+      "use_regex": false,
+      "priority": 85,
+      "description": "ห้าม train ด้วย adversarial input โดยไม่ผ่าน approval"
+    },
+    {
+      "scope": "system",
+      "action": "allow",
+      "match_type": "pattern",
+      "pattern": "supervised_fine_tune",
+      "use_regex": true,
+      "priority": 60,
+      "description": "อนุญาต supervised fine-tuning ที่ผ่าน approval"
+    }
+  ]
+}

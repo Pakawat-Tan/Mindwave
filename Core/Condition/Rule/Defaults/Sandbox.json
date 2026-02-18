@@ -1,0 +1,42 @@
+{
+  "_comment": "Sandbox Module Rules",
+  "_authority": "standard",
+  "rules": [
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "sandbox_escape",
+      "use_regex": false,
+      "priority": 95,
+      "description": "ห้าม escape ออกจาก sandbox environment"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "sandbox_to_production_direct",
+      "use_regex": false,
+      "priority": 90,
+      "description": "ห้าม push จาก sandbox ไป production โดยตรง ต้องผ่าน review"
+    },
+    {
+      "scope": "system",
+      "action": "block",
+      "match_type": "pattern",
+      "pattern": "sandbox_resource_unlimited",
+      "use_regex": false,
+      "priority": 85,
+      "description": "ห้าม sandbox ใช้ resource ไม่จำกัด"
+    },
+    {
+      "scope": "system",
+      "action": "allow",
+      "match_type": "pattern",
+      "pattern": "sandbox_experiment",
+      "use_regex": false,
+      "priority": 40,
+      "description": "อนุญาต experiment ภายใน sandbox"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+# MindWave Requirements
+# Cognitive AI — Realtime Learning System
+
+# ═══════════════════════════════════════════════════════════
+# Core Dependencies (Required)
+# ═══════════════════════════════════════════════════════════
+
+numpy>=1.24.0          # Neural network operations
+
+# ═══════════════════════════════════════════════════════════
+# Optional Dependencies (by feature)
+# ═══════════════════════════════════════════════════════════
+
+# ── Document Processing ────────────────────────────────────
+pdfplumber>=0.9.0      # PDF reading (preferred)
+# pypdf>=3.0.0         # Alternative PDF reader
+python-docx>=0.8.11    # Word document (.docx)
+
+# ── REST API Server ────────────────────────────────────────
+fastapi>=0.104.0       # REST API framework
+uvicorn>=0.24.0        # ASGI server
+
+# ── Speech (Sound Channel) ─────────────────────────────────
+SpeechRecognition>=3.10.0  # Speech-to-text
+pyaudio>=0.2.13           # Microphone input
+pyttsx3>=2.90             # Text-to-speech
+
+# ── Image/Video (OCR) ──────────────────────────────────────
+pytesseract>=0.3.10    # OCR engine
+Pillow>=10.0.0         # Image processing
+opencv-python>=4.8.0   # Video processing
+
+# ── Development & Testing ──────────────────────────────────
+pytest>=7.4.0          # Unit testing
+pytest-cov>=4.1.0      # Coverage
+
+# ═══════════════════════════════════════════════════════════
+# Installation Notes
+# ═══════════════════════════════════════════════════════════
+#
+# Minimal install (Core only):
+#   pip install numpy
+#
+# Full install (all features):
+#   pip install -r requirements.txt
+#
+# Feature-specific:
+#   Documents:  pip install pdfplumber python-docx
+#   REST API:   pip install fastapi uvicorn
+#   Speech:     pip install SpeechRecognition pyaudio pyttsx3
+#   Vision:     pip install pytesseract Pillow opencv-python
+#
+# System dependencies (for some features):
+#   - tesseract-ocr (for OCR)
+#   - portaudio (for pyaudio/microphone)
+#   - espeak (for pyttsx3 on Linux)
+#
